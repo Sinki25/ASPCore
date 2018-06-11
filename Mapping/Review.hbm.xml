@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping
+  xmlns="urn:nhibernate-mapping-2.2"
+  assembly="ApiCore"
+  namespace="iikoNet.BO">
+
+  <class name="Review" dynamic-update="true" dynamic-insert="true">
+    <id name="Id">
+      <generator class="guid" />
+    </id>
+
+    <property name="Mark" not-null="true"/>
+    <property name="CreatedOn" not-null="true"/>
+    <property name="ArticleId" not-null="true" insert="false" update="false" />
+    <many-to-one name="Article"
+                 class="Article"
+                 column="ArticleId"
+                 cascade="none"
+                 fetch="join"
+                 not-null="true"
+                 foreign-key="FK_Review_Article" />
+    <property name="UserId" not-null ="true"/>
+    <many-to-one name="User"
+                 class="User"
+                 column="UserId"
+                 cascade="none"
+                 fetch="join"
+                 not-null="true"
+                 foreign-key="FK_Review_User" />
+
+  </class>
+
+</hibernate-mapping>
